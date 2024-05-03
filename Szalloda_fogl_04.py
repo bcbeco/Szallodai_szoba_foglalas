@@ -14,7 +14,7 @@ class Szoba:
         if foglalas in self.foglalasok:
             self.foglalasok.remove(foglalas)
         else:
-            print("Nincs ilyen foglalás ehhez a szobához.")
+            print("\nNincs ilyen foglalás ehhez a szobához.")
 
     def ellenoriz(self, datum):
         for foglalas in self.foglalasok:
@@ -114,7 +114,7 @@ def main():
 
     # Felhasználói interfész
     while True:
-        print("Válasszon műveletet:")
+        print("\nVálasszon műveletet:")
         print("1. Szoba foglalása")
         print("2. Foglalás lemondása")
         print("3. Foglalások listázása")
@@ -130,11 +130,11 @@ def main():
                 datetime.strptime(datum, "%Y-%m-%d")
                 ar = szalloda.foglalas(szobaszam, datum)
                 if ar:
-                    print("A foglalás sikeres. A szoba ára:", ar)
+                    print("\nA foglalás sikeres. A szoba ára:",ar,"Ft")
                 else:
-                    print(ar)
+                    print("\n",ar)
             except ValueError:
-                print("Érvénytelen dátum formátum.")
+                print("\nÉrvénytelen dátum formátum.")
 
         elif valasztas == "2":
             szobaszam = input("Adja meg a lemondani kívánt foglalás szobaszámát: ")
@@ -142,21 +142,22 @@ def main():
             try:
                 datetime.strptime(datum, "%Y-%m-%d")
                 eredmeny = szalloda.lemondas(szobaszam, datum)
-                print(eredmeny)
+                print("\n",eredmeny)
             except ValueError:
                 print("\nÉrvénytelen dátum formátum.")
 
         elif valasztas == "3":
             foglalasok = szalloda.listaz_foglalasok()
             if foglalasok:
-                print("Szobaszám , Foglalás dátuma")
+                print("\nSzobaszám , Foglalás dátuma")
                 for foglalas in foglalasok:
                     print("Szoba:", foglalas[0], ", Dátum:", foglalas[1])
             else:
-                print("Nincsenek foglalások.")
+                print("\nNincsenek foglalások.")
 
         elif valasztas == "4":
             szobak_allapota = szalloda.listaz_szobak()
+            print(" ") # csak egy üres sor kell
             for szoba in szobak_allapota:
                 if szoba[2]:
                     print(szoba[0], "számú", szoba[1], "szoba foglalásai:", szoba[2])
@@ -164,10 +165,10 @@ def main():
                     print(szoba[0], "számú", szoba[1], "szobához még nincs foglalás.")
 
         elif valasztas == "5":
-            print("Kilépés...")
+            print("\nKilépés...")
             break
         else:
-            print("Érvénytelen választás.")
+            print("\nÉrvénytelen választás.")
 
 if __name__ == "__main__":
     main()
