@@ -28,7 +28,6 @@ class Szoba:
         else:
             return self.ar
 
-
 class EgyagyasSzoba(Szoba):
     def __init__(self, szobaszam):
         super().__init__(ar=10000, szobaszam=szobaszam)  # Egyágyas szoba ára: 10 000
@@ -100,8 +99,8 @@ class Foglalas:
         self.szoba = szoba
         self.datum = datum
 
-# Felhasználói interfész
 def main():
+    # adatok feltöltése
     szalloda = Szalloda("Hotel BAB")
     szalloda.add_egyagyas_szoba(EgyagyasSzoba("101"))
     szalloda.add_egyagyas_szoba(EgyagyasSzoba("102"))
@@ -113,8 +112,9 @@ def main():
         datum = f"2024-06-0{i}"
         szalloda.foglalas("101", datum)
 
+    # Felhasználói interfész
     while True:
-        print("\nVálasszon műveletet:")
+        print("Válasszon műveletet:")
         print("1. Szoba foglalása")
         print("2. Foglalás lemondása")
         print("3. Foglalások listázása")
@@ -144,7 +144,7 @@ def main():
                 eredmeny = szalloda.lemondas(szobaszam, datum)
                 print(eredmeny)
             except ValueError:
-                print("Érvénytelen dátum formátum.")
+                print("\nÉrvénytelen dátum formátum.")
 
         elif valasztas == "3":
             foglalasok = szalloda.listaz_foglalasok()
